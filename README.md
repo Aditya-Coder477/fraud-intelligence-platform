@@ -1,7 +1,5 @@
 # FraudIntel: Suspicious Mule Accounts Classification
 
-![Dashboard Preview](./frontend/public/fraudintel-preview.png)
-
 An enterprise-grade Banking Fraud Intelligence Platform built to detect, explain, and alert on suspicious pass-through mule accounts. 
 
 By combining advanced Machine Learning (LightGBM/XGBoost/CatBoost) with an Isolation Forest anomaly layer and a deterministic Rule-Based Scoring Engine, FraudIntel provides analysts with highly accurate risk detection and regulatory-grade narrative explanations.
