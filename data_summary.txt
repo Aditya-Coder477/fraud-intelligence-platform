@@ -1,0 +1,32 @@
+=== DATASET INSPECTION REPORT ===
+Analyzing: DataSet.csv
+Total columns found: 3925
+First 20 columns: ['Unnamed: 0', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13', 'F14', 'F15', 'F16', 'F17', 'F18', 'F19']
+Last 50 columns: ['F3875', 'F3876', 'F3877', 'F3878', 'F3879', 'F3880', 'F3881', 'F3882', 'F3883', 'F3884', 'F3885', 'F3886', 'F3887', 'F3888', 'F3889', 'F3890', 'F3891', 'F3892', 'F3893', 'F3894', 'F3895', 'F3896', 'F3897', 'F3898', 'F3899', 'F3900', 'F3901', 'F3902', 'F3903', 'F3904', 'F3905', 'F3906', 'F3907', 'F3908', 'F3909', 'F3910', 'F3911', 'F3912', 'F3913', 'F3914', 'F3915', 'F3916', 'F3917', 'F3918', 'F3919', 'F3920', 'F3921', 'F3922', 'F3923', 'F3924']
+
+Target candidates found: ['F3924']
+Selected target column for analysis: 'F3924'
+Total rows: 9082
+
+Column type distribution:
+  - Numeric columns: 3917
+  - Categorical/Object columns: 0
+  - Other columns: 8
+
+Target 'F3924' class distribution:
+  - 0: 9001 (99.11%)
+  - 1: 81 (0.89%)
+
+Missing values stats:
+  - Columns with >50% missing values: 1138 of 3925
+  - Examples of high missing value columns (top 10):
+    - F128: 100.00% missing
+    - F131: 100.00% missing
+    - F182: 100.00% missing
+    - F185: 100.00% missing
+    - F189: 100.00% missing
+    - F192: 100.00% missing
+    - F236: 100.00% missing
+    - F239: 100.00% missing
+    - F290: 100.00% missing
+    - F293: 100.00% missing

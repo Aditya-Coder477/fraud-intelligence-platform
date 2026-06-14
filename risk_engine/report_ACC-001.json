@@ -1,0 +1,197 @@
+{
+  "risk_score": 100.0,
+  "risk_category": "BLOCK",
+  "risk_action": "Immediate block, SAR filing, escalation",
+  "account_id": "ACC-001",
+  "timestamp": "2026-06-06T21:22:42.145209",
+  "inputs": {
+    "ml_prob": 95.0,
+    "anomaly_score": 88.0,
+    "behavior_score": 91.0,
+    "alert_score": 87.0
+  },
+  "components": {
+    "ml_prob": 38.0,
+    "anomaly_score": 22.0,
+    "behavior_score": 18.2,
+    "alert_score": 13.05
+  },
+  "boost": {
+    "base_score": 91.25,
+    "multiplier": 1.95,
+    "boost_added": 0.95,
+    "n_elevated": 4,
+    "high_signal_boosts": {
+      "ml_prob": 0.12,
+      "anomaly_score": 0.1,
+      "behavior_score": 0.08,
+      "alert_score": 0.15
+    },
+    "critical_alert": 0.2,
+    "interaction": 0.3
+  },
+  "explanation": {
+    "components": [
+      {
+        "component": "ml_prob",
+        "label": "ML Fraud Probability",
+        "raw_score": 95.0,
+        "weight": 0.4,
+        "contribution": 38.0,
+        "pct_of_total": 38.0,
+        "level": "HIGH",
+        "description": "Gradient-boosted ensemble model trained on historical mule/fraud patterns. Considers 155 engineered features including transaction flows, behavioural patterns, and account demographics."
+      },
+      {
+        "component": "anomaly_score",
+        "label": "Anomaly Detection",
+        "raw_score": 88.0,
+        "weight": 0.25,
+        "contribution": 22.0,
+        "pct_of_total": 22.0,
+        "level": "HIGH",
+        "description": "Isolation Forest + LOF + Autoencoder ensemble. Measures deviation from the normal distribution of legitimate accounts. Catches novel fraud patterns not present in historical training data."
+      },
+      {
+        "component": "behavior_score",
+        "label": "Transaction Behaviour",
+        "raw_score": 91.0,
+        "weight": 0.2,
+        "contribution": 18.2,
+        "pct_of_total": 18.2,
+        "level": "HIGH",
+        "description": "Transaction velocity, amount distribution, time-of-day patterns, counterparty concentration, and flow balance metrics. Core AML signal: near-zero net balance (in = out) indicates pass-through behaviour."
+      },
+      {
+        "component": "alert_score",
+        "label": "Rule-Based Alerts",
+        "raw_score": 87.0,
+        "weight": 0.15,
+        "contribution": 13.05,
+        "pct_of_total": 13.1,
+        "level": "HIGH",
+        "description": "Rule-based alerts from the AML policy engine: high-value transactions, round-dollar amounts, PEP matches, sanction list hits, rapid succession transfers, and geographical risk indicators."
+      }
+    ],
+    "boosts": {
+      "base_score": 91.25,
+      "boost_multiplier": 1.95,
+      "boost_added": 0.95,
+      "rules": [
+        {
+          "rule": "HIGH_SIGNAL: ML Fraud Probability",
+          "condition": "ML Fraud Probability > 75.0",
+          "value": "95.0",
+          "boost_added": "+0.120\u00d7",
+          "fired": true
+        },
+        {
+          "rule": "HIGH_SIGNAL: Anomaly Detection",
+          "condition": "Anomaly Detection > 75.0",
+          "value": "88.0",
+          "boost_added": "+0.100\u00d7",
+          "fired": true
+        },
+        {
+          "rule": "HIGH_SIGNAL: Transaction Behaviour",
+          "condition": "Transaction Behaviour > 75.0",
+          "value": "91.0",
+          "boost_added": "+0.080\u00d7",
+          "fired": true
+        },
+        {
+          "rule": "HIGH_SIGNAL: Rule-Based Alerts",
+          "condition": "Rule-Based Alerts > 75.0",
+          "value": "87.0",
+          "boost_added": "+0.150\u00d7",
+          "fired": true
+        },
+        {
+          "rule": "CRITICAL_ALERT: Rule-Based Alert",
+          "condition": "Alert Score > 85.0",
+          "value": "87.0",
+          "boost_added": "+0.200\u00d7",
+          "fired": true
+        },
+        {
+          "rule": "CONVERGENT_EVIDENCE: 4 signals elevated",
+          "condition": "\u22654 scores > 60.0",
+          "value": "n=4",
+          "boost_added": "+0.300\u00d7",
+          "fired": true
+        }
+      ],
+      "n_elevated": 4
+    },
+    "narrative": "This account presents critically elevated fraud risk indicators with a composite risk score of 100.0/100 (category: BLOCK). The primary risk driver is the ML Fraud Probability (ml prob: 95.0/100), which contributes 38.0 points (38%) to the final score. The following signals are elevated (\u226560): ML Fraud Probability (95), Anomaly Detection (88), Transaction Behaviour (91), Rule-Based Alerts (87). The base score of 91.2 was amplified by a boost multiplier of 1.950\u00d7 (total boost: +95%) due to: high-signal thresholds exceeded in ML Fraud Probability, Anomaly Detection, Transaction Behaviour, Rule-Based Alerts; critical alert threshold exceeded; convergent evidence from 4 independent signals. Recommended action: Immediate block, SAR filing, escalation.",
+    "counterfactual": {
+      "current_category": "BLOCK",
+      "target_category": "REVIEW",
+      "current_score": 100.0,
+      "target_score": 80,
+      "reduction_needed": 20.0,
+      "suggestions": [
+        {
+          "component": "ml_prob",
+          "label": "ML Fraud Probability",
+          "current": 95.0,
+          "needed": 69.4,
+          "drop_needed": 25.6
+        },
+        {
+          "component": "anomaly_score",
+          "label": "Anomaly Detection",
+          "current": 88.0,
+          "needed": 47.0,
+          "drop_needed": 41.0
+        }
+      ],
+      "note": "Reducing ML Fraud Probability from 95 to 69 would be sufficient to move to REVIEW category, assuming other scores unchanged."
+    },
+    "severity_drivers": [
+      {
+        "factor": "ML Fraud Probability",
+        "impact": "HIGH",
+        "raw_score": 95.0,
+        "contribution": 38.0
+      },
+      {
+        "factor": "Convergent Evidence (4 signals elevated)",
+        "impact": "HIGH",
+        "raw_score": 4,
+        "contribution": 27.375
+      },
+      {
+        "factor": "Anomaly Detection",
+        "impact": "HIGH",
+        "raw_score": 88.0,
+        "contribution": 22.0
+      },
+      {
+        "factor": "Critical Alert Override",
+        "impact": "CRITICAL",
+        "raw_score": 87.0,
+        "contribution": 18.25
+      },
+      {
+        "factor": "Transaction Behaviour",
+        "impact": "HIGH",
+        "raw_score": 91.0,
+        "contribution": 18.2
+      },
+      {
+        "factor": "Rule-Based Alerts",
+        "impact": "HIGH",
+        "raw_score": 87.0,
+        "contribution": 13.05
+      }
+    ],
+    "dominant_signal": {
+      "component": "ml_prob",
+      "label": "ML Fraud Probability",
+      "raw_score": 95.0,
+      "contribution": 38.0,
+      "pct_of_total": 38.0
+    }
+  }
+}

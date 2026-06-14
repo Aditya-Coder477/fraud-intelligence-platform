@@ -1,0 +1,32 @@
+# Python / Backend
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.env
+Backend/.env
+
+# ML Models & Data (Exclude large files)
+*.csv
+*.pkl
+*.h5
+*.model
+catboost_info/
+models/
+
+# Frontend / Next.js
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/.env.local
+frontend/.env.*.local
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp

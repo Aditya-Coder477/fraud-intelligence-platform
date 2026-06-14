@@ -1,0 +1,12 @@
+{
+  "all_zero": [
+    "risk_new_acct_flag",
+    "risk_batch_open_flag",
+    "risk_synthetic_id_flag",
+    "risk_flow_thru_flag"
+  ],
+  "constant": [
+    "risk_emp_channel_combo"
+  ],
+  "near_constant": []
+}

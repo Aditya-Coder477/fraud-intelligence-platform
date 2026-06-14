@@ -1,0 +1,55 @@
+=== DETAILED ANALYSIS SUMMARY ===
+Dataset Shape: (9082, 3925)
+Target Column: F3924
+Class Distribution: {0: 9001, 1: 81}
+
+1. Data Types:
+  - float64: 3876
+  - int64: 41
+  - str: 8
+  - Non-numeric columns: 8
+    * F2230 (str): nunique=4, samples=['Oct25', 'Oct25', 'Oct25', 'Oct25', 'Oct25']
+    * F3886 (str): nunique=17, samples=['Savings', 'Savings', 'Savings', 'Savings', 'Savings']
+    * F3888 (str): nunique=4292, samples=['8-1-2011', '8-2-2011', '8-4-2011', '8-4-2011', '8-8-2011']
+    * F3889 (str): nunique=7, samples=['G365D', 'G365D', 'G365D', 'G365D', 'G365D']
+    * F3890 (str): nunique=4, samples=['R', 'R', 'R', 'SU', 'SU']
+    * F3891 (str): nunique=7, samples=['selfemployed', 'selfemployed', 'student', 'selfemployed', 'student']
+    * F3892 (str): nunique=3, samples=['M', 'M', 'M', 'M', 'M']
+    * F3893 (str): nunique=2, samples=['RETAIL', 'RETAIL', 'RETAIL', 'RETAIL', 'RETAIL']
+
+2. Missing Values:
+  - Total missing cells: 9847086 (27.62%)
+  - Columns with any missing values: 3835
+  - Columns with >50% missing values: 1138
+  - Columns with 100% missing values: 63
+
+3. Constant Columns:
+  - Count: 359
+  - Examples (first 20): ['F128', 'F131', 'F181', 'F182', 'F183', 'F184', 'F185', 'F186', 'F189', 'F192', 'F236', 'F239', 'F290', 'F293', 'F390', 'F393', 'F437', 'F440', 'F492', 'F495']
+
+4. Duplicate Columns:
+  - Count: 977
+  - Examples of duplicate groups (first 5 groups):
+    * Group: ['F19', 'F25']
+    * Group: ['F20', 'F26']
+    * Group: ['F21', 'F27']
+    * Group: ['F22', 'F28']
+    * Group: ['F23', 'F29']
+
+5. Highly Correlated Features (threshold > 0.95):
+  - Features to drop count: 769
+  - Top 10 correlated pairs:
+    * F714 <-> F717: corr = 1.0000
+    * F718 <-> F1054: corr = 1.0000
+    * F808 <-> F811: corr = 1.0000
+    * F808 <-> F916: corr = 1.0000
+    * F808 <-> F919: corr = 1.0000
+    * F811 <-> F916: corr = 1.0000
+    * F811 <-> F919: corr = 1.0000
+    * F816 <-> F924: corr = 1.0000
+    * F819 <-> F927: corr = 1.0000
+    * F862 <-> F865: corr = 1.0000
+
+6. Target Leakage Candidates:
+  - Leakage candidates count: 1
+    * F3912: corr = 0.9691 (Extremely high correlation with target (0.9691))
